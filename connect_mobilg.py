@@ -1,6 +1,5 @@
 from selenium import webdriver
 from selenium.common.exceptions import *
-from selenium.webdriver.common.keys import Keys
 import time
 import account as acc
 
@@ -21,12 +20,17 @@ class ConnectPoems:
             time.sleep(10)
 
     # open new tab
-    def open_viop_tab(self):
+    def open_future_contract_tab(self):
+        self.browser.find_elements_by_xpath("/html/body/div/div[1]/div/div[1]/button")[0].click()
+        self.browser.find_element_by_xpath("/html/body/div/div[1]/div/div[2]/ul[5]/li/a").click()
+        self.browser.find_element_by_xpath("/html/body/div/div[1]/div/div[2]/ul[5]/li/ul/li[2]/a").click()
+        """
         # Open a new window
         self.browser.execute_script("window.open('');")
         self.browser.get(acc.PHILLIP_FUTURE_URL)
         # Switch to the new window and open new URL
         self.browser.switch_to.window(self.browser.window_handles[0])
+        """
 
     def login_poems(self):
         self.browser.find_element_by_id("HesapNo").send_keys(self.acc_number)
@@ -49,9 +53,9 @@ def main():
     connect_poems = ConnectPoems()
     connect_poems.open_browser()
     connect_poems.login_poems()
-    time.sleep(10)
+    time.sleep(15)
 #    connect_poems.accept_the_statement_of_account()
-    connect_poems.open_viop_tab()
+    connect_poems.open_future_contract_tab()
 
 
 if __name__ == "__main__":
