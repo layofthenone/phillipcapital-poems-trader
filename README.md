@@ -11,4 +11,4 @@
 
 
 ## Project
-<img src="https://github.com/layofthenone/phillipcapital-poems-trader/blob/master/project.JPG" width="650" height="400" />
+<img src="https://github.com/layofthenone/phillipcapital-poems-trader/blob/master/project.JPG" width="610" height="400" />
