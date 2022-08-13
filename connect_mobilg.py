@@ -21,21 +21,24 @@ class ConnectPoems:
 
     # open new tab
     def open_future_contract_tab(self):
-        self.browser.find_elements_by_xpath("/html/body/div/div[1]/div/div[1]/button")[0].click()
-        self.browser.find_element_by_xpath("/html/body/div/div[1]/div/div[2]/ul[5]/li/a").click()
-        self.browser.find_element_by_xpath("/html/body/div/div[1]/div/div[2]/ul[5]/li/ul/li[2]/a").click()
-        """
-        # Open a new window
-        self.browser.execute_script("window.open('');")
-        self.browser.get(acc.PHILLIP_FUTURE_URL)
-        # Switch to the new window and open new URL
-        self.browser.switch_to.window(self.browser.window_handles[0])
-        """
+        self.browser.find_elements("xpath", "/html/body/div/div[1]/div/div[1]/button")[0].click()
+        self.browser.find_element("xpath", "/html/body/div/div[1]/div/div[2]/ul[5]/li/a").click()
+        self.browser.find_element("xpath", "/html/body/div/div[1]/div/div[2]/ul[5]/li/ul/li[2]/a").click()
 
     def login_poems(self):
-        self.browser.find_element_by_id("HesapNo").send_keys(self.acc_number)
-        self.browser.find_element_by_id("Sifre").send_keys(self.acc_password)
-        self.browser.find_element_by_id("BtnGiris").click()
+        self.browser.find_element("id", "HesapNo").send_keys(self.acc_number)
+        self.browser.find_element("id", "Sifre").send_keys(self.acc_password)
+        self.browser.find_element("id", "BtnGiris").click()
+
+    def browser_url(self):
+        url = self.browser.command_executor.url  # "http://127.0.0.1:60622/hub"
+        print(url)
+        return url
+
+    def browser_session(self):
+        session_id = self.browser.session_id  # '4e167f26-dc1d-4f51-a207-f761eaf73c31'
+        print(session_id)
+        return session_id
 
     def accept_the_statement_of_account(self):
         try:
@@ -47,16 +50,3 @@ class ConnectPoems:
 
         except NoSuchElementException:
             pass
-
-
-def main():
-    connect_poems = ConnectPoems()
-    connect_poems.open_browser()
-    connect_poems.login_poems()
-    time.sleep(15)
-#    connect_poems.accept_the_statement_of_account()
-    connect_poems.open_future_contract_tab()
-
-
-if __name__ == "__main__":
-    main()
